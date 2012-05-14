@@ -30,10 +30,15 @@ module ActiveRecord
           end
         end
       end
+
+      # TODO: add a bypass method that:
+      #  - calls ActiveRecord::ReadonlyModel.bypass
+      #  - reloads the enumeration
     end
 
     def self.included(caller)
       caller.extend(ClassMethods)
+      caller.send(:include, ActiveRecord::ReadonlyModel)
     end
   end
 end
