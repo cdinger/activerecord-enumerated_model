@@ -1,4 +1,5 @@
 require 'active_record'
+require 'active_record-readonly_model'
 require 'active_record-enumerated_model/version'
 
 module ActiveRecord
@@ -33,17 +34,6 @@ module ActiveRecord
 
     def self.included(caller)
       caller.extend(ClassMethods)
-
-      # Prevents destroy
-      caller.before_destroy do
-        raise ActiveRecord::ReadOnlyRecord
-      end
     end
-
-    # Prevents updates/save
-    def readonly?
-      true
-    end
-
   end
 end

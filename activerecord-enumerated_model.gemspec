@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = ActiveRecord::EnumeratedModel::VERSION
 
   gem.add_dependency('activerecord', '>= 3.0.0')
+  gem.add_dependency('activerecord-readonly_model', '>= 0.0.1')
 end
