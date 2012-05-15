@@ -10,7 +10,6 @@ class TestEnumeration < Test::Unit::TestCase
       ActiveRecord::Base.connection.execute("insert into static_things (name) values ('''nother blah\" thing. !')")
       class StaticThing < ActiveRecord::Base
         include ActiveRecord::EnumeratedModel
-        create_enumeration_constants
       end
     end
 
