@@ -60,11 +60,13 @@ module ActiveRecord
     end
 
     def self.constant_friendly_string(str)
-      const = str.underscore.upcase
-      const.gsub!(/\s/, '_')
-      const.gsub!(/^[^A-Z]{1}/, '')
-      const.gsub!(/[^A-Z_]/, '')
-      const.gsub!(/[^A-Z]$/, '')
+      const = str.upcase
+      const.gsub!(/\s+/, '_')       # replace whitespace with an underscore
+      const.gsub!(/^[^A-Z]+/, '')   # remove leading numbers, symbols, etc
+      const.gsub!(/[-\/\\]/, '_')   # turn these symbols into underscores
+      const.gsub!(/[^A-Z_]/, '')    # remove anything that's not a letter or underscore
+      const.gsub!(/_+/, '_')        # collapse multiple adjacent underscores
+      const.gsub!(/[^A-Z0-9]$/, '') # always end with a non-symbol
       const
     end
 
