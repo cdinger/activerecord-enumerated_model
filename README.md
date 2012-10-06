@@ -7,22 +7,26 @@ data.
 Sometimes you have a model where values will not change. Consider the
 following:
 
+```ruby
     class Role
       ADMIN = 1
       EDITOR = 2
       VIEWER = 3
     end
+```
 
 We'll often do something like this in order to easily check values in
 our application.
 
+```ruby
     unless @current_user.has?(Role::ADMIN)
       # some admin stuff
     end
+```
 
 Keeping this out of ActiveRecord prevents us from doing any kind of
-joining in the database and limits what +Role+ can do. Wouldn't be cool
-if you could Role::ADMIN returned an ActiveRecord row?
+joining in the database and limits what `Role` can do. Wouldn't be cool
+if you could `Role::ADMIN` returned an ActiveRecord row?
 
     Role::ADMIN == #<Role name: "Admin">
 
@@ -46,7 +50,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Simply include `ActiveRecord::EnumeratedModel` in your model:
+
+```ruby
+    class StaticThing < ActiveRecord::Base
+      include ActiveRecord::EnumeratedModel
+    end
+```
 
 ## Contributing
 
